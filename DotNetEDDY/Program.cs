@@ -1,3 +1,5 @@
+using DotNetEDDY;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,5 +21,16 @@ if (app.Environment.IsDevelopment())
 app.UseAuthorization();
 
 app.MapControllers();
+
+Storage.Dog = new List<IPet>() {
+    new Dog { Name = "Alpha", Age = 2, Price = 100 },
+    new Dog { Name = "Alpha2", Age = 2, Price = 100 },
+};
+
+Storage.Cat = new List<IPet> {
+    new Cat { Name = "Gato1", Age = 2, Price = 100},
+    new Cat { Name = "Gato2", Age = 2, Price = 100},
+    new Cat { Name = "Gato3", Age = 2, Price = 100}
+};
 
 app.Run();
