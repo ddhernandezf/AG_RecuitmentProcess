@@ -11,17 +11,10 @@ namespace DotNetEDDY.Controllers
         public IActionResult Get() => Ok(new List<IPet>().Concat(Storage.Dog).Concat(Storage.Cat));
 
         [HttpGet("total")]
-        public IActionResult Total()
-        {
-            List<IPet> pets = Storage.Dog;
-            pets.AddRange(Storage.Cat);
-
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"Pet Totals: {pets.Count}");
-            sb.AppendLine($"Dog Totals: {Storage.Dog.Count}");
-            sb.AppendLine($"Cat Totals: {Storage.Cat.Count}");
-
-            return Ok(sb.ToString());
-        }
+        public IActionResult Total() => Ok(new StringBuilder()
+                .AppendLine($"Pet Totals: {new List<IPet>().Concat(Storage.Dog).Concat(Storage.Cat).ToList().Count}")
+                .AppendLine($"Dog Totals: {Storage.Dog.Count}")
+                .AppendLine($"Cat Totals: {Storage.Cat.Count}")
+                .ToString());
     }
 }
