@@ -8,14 +8,7 @@ namespace DotNetEDDY.Controllers
     public class PetController : ControllerBase
     {
         [HttpGet]
-        public IActionResult Get()
-        {
-            List<IPet> result = new List<IPet>();
-            result.AddRange(Storage.Cat);
-            result.AddRange(Storage.Dog);
-
-            return Ok(result);
-        }
+        public IActionResult Get() => Ok(new List<IPet>().Concat(Storage.Dog).Concat(Storage.Cat));
 
         [HttpGet("total")]
         public IActionResult Total()
